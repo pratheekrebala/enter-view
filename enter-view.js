@@ -48,8 +48,8 @@
 
       elements = elements.filter(el => {
         const rect = el.getBoundingClientRect();
-        const top = rect.top;
-        const entered = top < targetFromTop;
+        const { top, bottom } = rect; // line 51
+        const entered = top < targetFromTop && bottom > targetFromTop; // line 52
         if (entered && !el.__enter_view) {
           enter(el);
           if (once) return false;
